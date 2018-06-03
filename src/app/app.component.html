@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+
+  <button mat-icon-button *ngIf="displayMenu" (click)="goHome()">
+    <mat-icon>home</mat-icon>
+  </button>
+
+  <span>&nbsp;{{title}}</span>
+  <span class="fill-remaining-space"></span>
+
+  <button mat-icon-button *ngIf="displayMenu" (click)="openDialog()">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+
+</mat-toolbar>
+<span *ngIf="displayMenu">Welcome, {{userInfo.displayName}}</span>
+
+<router-outlet></router-outlet>
