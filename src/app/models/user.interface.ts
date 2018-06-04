@@ -7,7 +7,8 @@
 
 // This is the interface model returned by the authentication method
 export interface UserLogged {
-    username: string;
+    status: number;
+    message: string;
     displayName: string;
     role: string;
 }
@@ -17,4 +18,11 @@ export interface UserAuth {
     username: string;
     password: string;
     group: string;
+}
+
+export interface SuccLogin {
+    status: number;
+    message: string;
+    displayName: string;
+    role: string;
 }

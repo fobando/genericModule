@@ -14,7 +14,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/observable';
 import { Subject } from 'rxjs/Subject';
 import { HttpClient } from '@angular/common/http';
-import { UserAuth, UserLogged } from '../models/user.interface';
+import { UserAuth, UserLogged, SuccLogin } from '../models/user.interface';
 
 @Injectable()
 export class LoginService {
@@ -25,7 +25,7 @@ export class LoginService {
 
   /** These are the two Subject Observables that we will use to communicate
    * to the suscribers about the login and logout. Notice that the Login
-   * observable sends the user object, this is useful if you want to enable 
+   * observable sends the user object, this is useful if you want to enable
    * a welcome package in app component
    */
    public onLogin$  = new Subject<UserLogged>();
@@ -37,25 +37,43 @@ export class LoginService {
 
    return new Promise((succ, reject) => {
 
+      const configUrl = './mockup/successLogin.json';
+      // 'http://localhost:4200/assets/succLogin.json'
+
+      this.http.get<UserLogged>('http://localhost:4200/assets/succLogin.json').subscribe(
+            resp => {
+              console.log(resp);
+
+              if (resp.status === 0) {
+                this.isLogged = true;
+                this.onLogin$.next(this.user);
+              } else {
+                this.isLogged = false;
+              }
+              succ( resp);
+            },
+            err  => {  reject(err); }
+        );
+
          // Todo:
          // Implement the http service to talk to the Authentication endpoint
          // as configured in the environment.ts
 
          // Assign the returned value to the local property object
-         this.user.displayName = 'Jdoe';
-         this.user.role = 'Admin';
+//         this.user.displayName = 'Jdoe';
+//         this.user.role = 'Admin';
 
          // Assign it from the local parameter as it does not come in the response
-         this.user.username = user.username;
+//         this.user.username = user.username;
 
          // Make it logged
-         this.isLogged = true;
+//         this.isLogged = true;
 
          // Emit a new onLogin$ event with the user Object
-         this.onLogin$.next(this.user);
+//         this.onLogin$.next(this.user);
 
          // return a successfull promise with the user object
-         succ(this.user);
+//         succ(this.user);
 
    });
 

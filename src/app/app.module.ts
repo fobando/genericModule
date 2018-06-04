@@ -16,6 +16,7 @@ import { MainComponent } from './components/main/main.component';
 import { RouteGuardService } from './services/route-guard.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { LoginMsgComponent } from './components/login-msg/login-msg.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DialogComponent } from './components/dialog/dialog.component';
     LoginComponent,
     HelloComponent,
     MainComponent,
-    DialogComponent
+    DialogComponent,
+    LoginMsgComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
     FlexLayoutModule,
     HttpClientModule
   ],
-  entryComponents : [ HelloComponent, DialogComponent ],
+  entryComponents : [ HelloComponent, DialogComponent, LoginMsgComponent ],
   providers: [LoginService, RouteGuardService,
     {
       provide: HTTP_INTERCEPTORS,
