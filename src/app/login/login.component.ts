@@ -45,18 +45,23 @@ export class LoginComponent implements OnInit {
     this.user.group = environment.applicationGroupIdentifier;
 
     this.loginService.authenticateUser(this.user).then(resp => {
+
       if (resp.status === 0) {
-        console.log('sucessfully authenticated' + resp.message);
+        console.log('Sucessfully authenticated ' + resp.message);
+
         this.openSnackBar(resp.message);
+
         // navigate to main component
         this.route.navigate([ROUTE.MAIN]);
+
       } else {
-        console.log('sucessfully authenticated' + resp.message);
+        console.log('Invalid authentication ' + resp.message);
+
         this.openSnackBar(resp.message);
       }
 
     }).catch(err => {
-      console.log('Unsucessfully', err);
+      console.log('Auth error ', err);
       this.openSnackBar(err);
     });
   }

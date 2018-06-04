@@ -10,7 +10,7 @@
       "assets": [
         "assets",
         "favicon.ico",
-        { "glob": "succLogin.json", "input": "./", "output": "./assets/" }
+        { "glob": "mockLogin.json", "input": "./", "output": "./assets/" }
       ],
       "index": "index.html",
       "main": "main.ts",

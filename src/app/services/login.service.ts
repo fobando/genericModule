@@ -37,10 +37,9 @@ export class LoginService {
 
    return new Promise((succ, reject) => {
 
-      const configUrl = './mockup/successLogin.json';
-      // 'http://localhost:4200/assets/succLogin.json'
+     // const configUrl = ;
 
-      this.http.get<UserLogged>('http://localhost:4200/assets/succLogin.json').subscribe(
+      this.http.get<UserLogged>('http://localhost:4200/assets/mockLogin.json').subscribe(
             resp => {
               console.log(resp);
 
@@ -48,33 +47,33 @@ export class LoginService {
                 this.isLogged = true;
                 this.onLogin$.next(this.user);
               } else {
-                this.isLogged = false;
+                this.logOut();
               }
               succ( resp);
             },
             err  => {  reject(err); }
         );
-
+/**
          // Todo:
          // Implement the http service to talk to the Authentication endpoint
          // as configured in the environment.ts
 
          // Assign the returned value to the local property object
-//         this.user.displayName = 'Jdoe';
-//         this.user.role = 'Admin';
+         this.user.displayName = 'Jdoe';
+         this.user.role = 'Admin';
 
          // Assign it from the local parameter as it does not come in the response
-//         this.user.username = user.username;
+         this.user.username = user.username;
 
          // Make it logged
-//         this.isLogged = true;
+         this.isLogged = true;
 
          // Emit a new onLogin$ event with the user Object
-//         this.onLogin$.next(this.user);
+         this.onLogin$.next(this.user);
 
          // return a successfull promise with the user object
-//         succ(this.user);
-
+         succ(this.user);
+*/
    });
 
   }

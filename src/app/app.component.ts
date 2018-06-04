@@ -18,7 +18,8 @@ export class AppComponent implements OnInit, OnDestroy {
   displayMenu = false;
   userInfo: UserLogged = <null>{};
 
-  constructor(public loginService: LoginService,
+  constructor(
+    public loginService: LoginService,
     public router: Router,
     public dialog: MatDialog) { }
 
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+
       if (result === 'true') {
         this.logOut();
       }
